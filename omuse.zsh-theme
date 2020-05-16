@@ -23,7 +23,7 @@ preexec () {
 }
 
 precmd () {
-    ram_info=$(\free -h | sed -n "2p" | awk '{ printf $3 "B/" $2 "B"}')
+    ram_info=$(\free | sed -n "2p" | awk '{ printf "%.1f/%.1fG", ($2-$7)/1024/1024, $2/1024/1024}')
     (( _start >= 0 && (($(\date +%s%N)-_start >= 200000000)) )) && set -A _elapsed $(printf "%.3fs" ($(\date +%s%N)-_start)/1000000000.0 ) || set -A _elapsed ""
     _start=-1
 }
