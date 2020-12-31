@@ -29,5 +29,5 @@ precmd () {
 }
 
 PROMPT='
-%{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_info) $CLOCK_CHARACTER%{$fg_bold[red]%}%*%{$reset_color%} %{$fg_bold[grey]%}$ram_info%{$reset_color%} %{$fg_bold[blue]%}$_elapsed%{$reset_color%}
+%{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_info) $CLOCK_CHARACTER%{$fg_bold[red]%}%*%{$reset_color%} %F{8}$ram_info%{$reset_color%} %{$fg_bold[blue]%}$_elapsed%{$reset_color%}
 $exit_code_dollar '
