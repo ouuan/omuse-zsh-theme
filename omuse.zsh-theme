@@ -1,7 +1,7 @@
 # disable special characters in tty
 if [ $(tput colors) = '256' ]; then
     BRANCH_CHARACTER='\uE0A0 '
-    CLOCK_CHARACTER='⌚'
+    CLOCK_CHARACTER='⏱️ '
 fi
 
 # Must use Powerline font, for \uE0A0 to render.
