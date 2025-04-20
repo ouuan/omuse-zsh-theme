@@ -24,7 +24,7 @@ preexec () {
 }
 
 precmd () {
-    if ssh-add -l >/dev/null; then
+    if ssh-add -l >/dev/null 2>/dev/null; then
         ssh_info=" $SSH_CHARACTER(ssh-added)"
     else
         ssh_info=""
