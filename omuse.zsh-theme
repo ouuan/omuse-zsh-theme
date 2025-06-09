@@ -30,6 +30,14 @@ precmd () {
         ssh_info=""
     fi
 
+    if [[ ${NNNLVL:-0} == 0 ]]; then
+        nnn_info=""
+    elif [[ $NNNLVL == 1 ]]; then
+        nnn_info=" (nnn)"
+    else
+        nnn_info=" (nnn $NNNLVL)"
+    fi
+
     ram_info=$(\free | sed -n "2p" | awk '{ printf "%.1f/%.1fG", ($2-$7)/1024/1024, $2/1024/1024}')
 
     (( _start >= 0 && (($(\date +%s%N)-_start >= 200000000)) )) && set -A _elapsed "$(printf " %.3fs" ($(\date +%s%N)-_start)/1000000000.0)" || set -A _elapsed ""
@@ -37,5 +45,5 @@ precmd () {
 }
 
 PROMPT='
-%{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_info) $CLOCK_CHARACTER%{$fg_bold[red]%}%*%{$reset_color%} %F{8}$ram_info%{$reset_color%}%{$fg_bold[blue]%}$_elapsed%{$reset_color%}%{$fg_bold[yellow]%}$ssh_info%{$reset_color%}
+%{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_info) $CLOCK_CHARACTER%{$fg_bold[red]%}%*%{$reset_color%} %F{8}$ram_info%{$reset_color%}%{$fg_bold[yellow]%}$_elapsed%{$reset_color%}%{$fg_bold[yellow]%}$ssh_info%{$reset_color%}%{$fg_bold[blue]%}$nnn_info%{$reset_color%}
 $exit_code_dollar '
